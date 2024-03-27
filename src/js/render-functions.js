@@ -18,7 +18,7 @@ export function renderGallery(arr) {
     const markup = arr
       .map(photo => {
         return `<li class="gallery-item">
-            <a class="photos-list-link" href="${photo.largeImageURL}">
+            <a class="image-link" href="${photo.largeImageURL}">
             <img class="image" src="${photo.webformatURL}" alt="${photo.tags}"/>
             </a>
             <ul class="list-container">

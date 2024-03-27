@@ -27,30 +27,27 @@ const hideLoader = () => {
   preloader.style.display = 'none';
 };
 
-searchForm.addEventListener('submit', e => {
+searchForm.addEventListener('submit', async e => {
   e.preventDefault();
   galleryList.innerHTML = '';
   const input = searchInput.value.trim();
   if (input !== '') {
     showLoader();
-    getImages(input)
-      .then(data => {
-        renderGallery(data.hits);
-      })
-      .catch(error => {
-        console.log(error);
-        iziToast.error({
-          message: 'Sorry, an error occurred while loading. Please try again!',
-          theme: 'dark',
-          progressBarColor: '#FFFFFF',
-          color: '#EF4040',
-          position: 'topRight',
-        });
-      })
-      .finally(() => {
-        hideLoader();
-        searchForm.reset();
+    try {
+      const data = await getImages(input);
+      renderGallery(data.hits);
+    } catch (error) {
+      console.log(error);
+      iziToast.error({
+        message: 'Sorry, an error occurred while loading. Please try again!',
+        theme: 'dark',
+        progressBarColor: '#FFFFFF',
+        color: '#EF4040',
+        position: 'topRight',
       });
+    }
+    hideLoader();
+    searchForm.reset();
   } else {
     iziToast.show({
       message: 'Please complete the field!',
