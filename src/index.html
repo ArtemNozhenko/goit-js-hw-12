@@ -19,17 +19,31 @@
   </head>
   <body>
     <section class="container">
-      <form class="search-form">
-        <input
-          type="text"
-          name="query"
-          class="search-input"
-          placeholder="Search images..."
-        />
-        <button type="submit" class="search-btn">Search</button>
-      </form>
-      <div class="loader"></div>
+      <div class="form">
+        <form class="search-form">
+          <input
+            type="text"
+            name="query"
+            class="search-input"
+            placeholder="Search images..."
+          />
+          <button type="submit" class="search-btn">Search</button>
+        </form>
+      </div>
+
       <ul class="gallery"></ul>
+
+      <div class="loader"></div>
+
+      <div>
+        <button
+          type="button"
+          class="btn btn-primary button js-btn-load hidden"
+          data-action="load-more"
+        >
+          <span class="label">Load more</span>
+        </button>
+      </div>
     </section>
 
     <script type="module" src="./main.js"></script>

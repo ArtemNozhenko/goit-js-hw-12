@@ -92,6 +92,25 @@ body {
   line-height: 1.33;
 }
 
+.button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button.is-hidden {
+  display: none;
+}
+
+.button > .spinner.is-hidden {
+  display: none;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
 .loader {
   width: 48px;
   height: 48px;
