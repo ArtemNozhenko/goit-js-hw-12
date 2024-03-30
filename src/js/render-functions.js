@@ -1,7 +1,16 @@
-import { lightbox, galleryList } from '../main';
+import { galleryList } from '../main';
 
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+// =================================
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionDelay: 250,
+  captionsData: 'alt',
+});
+
+// ==============================================
 
 function templateGallery(obj) {
   return `<li class="gallery-item">
@@ -18,24 +27,11 @@ function templateGallery(obj) {
 }
 
 function templateGalleries(arr) {
-  return arr.map(templateGallery).join();
+  return arr.map(templateGallery).join('');
 }
 
 export function renderGallery(arr) {
   const markup = templateGalleries(arr);
-  if (arr.length == 0) {
-    iziToast.error({
-      message:
-        'Sorry, there are no images matching your search query. Please try again!',
-      theme: 'dark',
-      progressBarColor: '#FFFFFF',
-      color: '#EF4040',
-      position: 'topRight',
-    });
-    return;
-  } else {
-    galleryList.insertAdjacentHTML('beforeend', markup);
-  }
-
+  galleryList.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
 }

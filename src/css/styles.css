@@ -56,6 +56,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
+  margin-bottom: 32px;
 }
 
 .gallery-item {
@@ -96,14 +97,18 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 125px;
+  height: 40px;
+  background: #4e75ff;
+  color: #dcedc8;
+  border: 1px solid #e0e0e0;
+  transition: background-color 0.15s ease-in;
 }
 
-.button.is-hidden {
-  display: none;
-}
-
-.button > .spinner.is-hidden {
-  display: none;
+.button:hover {
+  background-color: #6c8cff;
 }
 
 .hidden {
