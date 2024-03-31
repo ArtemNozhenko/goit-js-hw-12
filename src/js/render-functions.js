@@ -32,6 +32,18 @@ function templateGalleries(arr) {
 
 export function renderGallery(arr) {
   const markup = templateGalleries(arr);
-  galleryList.insertAdjacentHTML('beforeend', markup);
+  if (arr.length == 0) {
+    iziToast.error({
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
+      theme: 'dark',
+      progressBarColor: '#FFFFFF',
+      color: '#EF4040',
+      position: 'topRight',
+    });
+    return;
+  } else {
+    galleryList.insertAdjacentHTML('beforeend', markup);
+  }
   lightbox.refresh();
 }
