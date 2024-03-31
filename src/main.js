@@ -38,8 +38,24 @@ searchForm.addEventListener('submit', async e => {
   try {
     showLoader();
     const data = await getImages(input, currentPage);
-    maxPage = Math.ceil(data.totalHits / pageSize);
-    renderGallery(data.hits);
+    if (data.totalHits === 0) {
+      hideLoader();
+      iziToast.error({
+        message:
+          'Sorry, there are no images matching your search query. Please try again!',
+        theme: 'dark',
+        progressBarColor: '#FFFFFF',
+        color: '#EF4040',
+        position: 'topRight',
+      });
+      hideLoadMore();
+      searchForm.reset();
+      return;
+    } else {
+      maxPage = Math.ceil(data.totalHits / pageSize);
+      renderGallery(data.hits);
+      checkButton();
+    }
   } catch (error) {
     iziToast.error({
       message: 'Sorry, an error occurred while loading. Please try again!',
@@ -49,8 +65,8 @@ searchForm.addEventListener('submit', async e => {
       position: 'topRight',
     });
   }
+
   hideLoader();
-  checkButton();
   searchForm.reset();
 });
 
